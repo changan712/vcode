@@ -1,0 +1,115 @@
+<div class="container about">
+    <section>
+        <h2>关于我们</h2>
+
+        <div class="line"></div>
+        <div class="text"> <!--ng-bind-html="vm.rendHtml(vm.text)"-->
+            <h3>1 简介</h3>
+
+            <p><a href="#/index">火柴手写码</a>，是基于海量手写字符、复杂安全技术而生成的图片验证码，提高了破解难度。火柴手写码，由火柴棍工作室研发，其开放平台已为开发者提供清晰、安全、方便的云验证码服务。
+            </p>
+
+            <h3>2 工作原理</h3>
+
+            <p>火柴手写码，是收集海量手写图片数据并进行切割、降噪、组合、多层过滤等技术处理后生成的图片验证码。</p>
+            其工作原理如下：<br>
+
+            <div class="principle text-center" style="margin: 10px 0 ">
+                <img src="images/prip.jpg" width="600" alt=""/>
+            </div>
+            <h4>2.1 收集</h4>
+
+            <p>我们长期致力于国人书写习惯的识别和研究，形成了稳定的手写数据收集渠道，以此保障火柴手写码有源源不断的手写素材。</p>
+
+            <p>《源数据过滤系统》会帮助我们对原始手写数据进行初步过滤，去除模糊、残缺的素材，以提高可用性并节约后期成本。</p>
+
+            <div class=" contrast  clearfix">
+                <h4>2.2 切割</h4>
+                <img src="images/a-0.jpg" class="pull-left" alt=""/>
+
+                我们截取过滤后的手写图片，并将其有效区域切割成单字符图片。<br>
+
+                举例：如下表所示，将一张“2015”图片，切割成4张图片，其字符分别为：2、0、1、5。<br>
+
+                然后，我们会将其中不合格的单字符图片过滤掉。
+            </div>
+            <br>
+
+            <div class="contrast clearfix">
+                <h4 class="clearfix">2.3 降噪</h4>
+                <img src="images/a-1.jpg" class="pull-left" alt=""/>
+
+                <div>我们采用均值滤波器、中值滤波器等图像降噪（Image Denoising）方法，最大化地去除干扰因素，以获得更清晰的、肉眼容易识别但OCR（Optical Character
+                    Recognition，光学字符识别）难以识别的图片。
+                </div>
+                <div>除了降噪，我们还会对单字符图片进行其他技术处理，然后再次将其中不合格的图片过滤掉。这一系列操作的过程，可以用下表形象化地表示：</div>
+            </div>
+            <h4>2.4 组合</h4>
+
+            <p>
+                我们会将多张有效的单字符图片，按照一定的算法随机组成在一起，形成验证码。以6位数字验证码为例，系统会取6张有效的单数字图片组合在一起；如果安全性略差的连续相同数字的话，则会重新组合。这一系列操作的过程，可以用下表形象化地表示：</p>
+
+            <div class="text-center"><img src="images/a-2.jpg" alt=""/></div>
+
+
+            <h4>2.5 交付</h4>
+
+            <p>经过上述一系列复杂技术处理之后的图片，才是我们最终交付用户使用的火柴手写码。</p>
+
+            <h3>3 产品优势</h3>
+
+            <p>传统图片验证码一般是由程序自动扭曲字符生成，因为源图片内容单一、混淆算法有限、干扰因素较多，容易被穷举破解，而且用户体验较差。</p>
+            示例如下：
+            <div class="reg-img-list">
+            <a href="http://zc.qq.com/chs/index.html" target="_blank"><img src="images/a-4.jpg" alt=""/></a>
+            <a href="https://passport.baidu.com/v2/?reg&regType=1&tpl=mn&u=https%3A%2F%2Fwww.baidu.com%2F" target="_blank"><img src="images/a-5.jpg" alt=""/></a>
+            <a href="https://memberprod.alipay.com/account/reg/index.htm" target="_blank"><img src="images/a-6.jpg" alt=""/></a>
+            </div>
+            <p>而火柴手写码，经过前文所述一系列技术处理后，仍能获得清晰、安全的验证码，示例如下：</p>
+            <img src="images/a-7.jpg" alt=""/><br><br>
+            火柴手写码的产品优势，主要体现在以下几个方面：
+            <h4>3.1 海量手写字符</h4>
+
+            <p>基于稳定的手写数据收集渠道，我们建立了手写码数据库，正在并将持续扩容。传统团队很难也不会开展类似工作。</p>
+
+            <h4>3.2 难以破解</h4>
+
+            <p>手写字符的识别，在OCR领域一直是个难题，目前尚没有高效、低成本的解决方案。</p>
+
+            <p>
+                即使是同一个人，在不同时间、不同场景下书写同一个字符，由于书写时的方式、笔、纸张、环境等因素的不同，都可能导致书写结果的不一致，这在很大程度上增加了OCR识别的复杂度。下图是同一人书写的24个数字“8”，都不尽相同。</p>
+            <img src="images/a-8.jpg" alt=""/>
+
+            <h3>4 团队介绍</h3>
+
+            <p>火柴工作室，由一群开发经验丰富的80/90码农组成，在饱受验证码开发之苦后，致力于国人书写习惯的识别和研究，结合手写体特征与验证码技术形成了手写码。</p>
+
+            <p>我们在解放自己的同时，也希望能把更多的开发者从无聊的验证码开发中解放出来，所以我们搭建了火柴手写码开放平台，希望借助大家的智慧共同推进手写验证码技术的进步。</p>
+
+            <h3>5 产品计划</h3>
+
+            <p>我们正在并将持续扩容手写字符数据库，从目前的纯数字逐渐形成数字、英文字母、简体中文汉字、其他特殊字符等多种手写码混排的格局。</p>
+
+            <p>
+                我们也将努力尝试每个手写码有且只用一次，以此提供破解复杂度；尝试降低噪点，使图片更清晰以便于用户更容易识别；尝试结合大数据行为分析，在不降低安全性的前提下为不同的用户推荐不同的手写码，如：为喜欢数字的用户提供数字验证码，为喜欢汉字的用户提供汉字验证码。</p>
+
+
+        </div>
+    </section>
+    <br>
+    <br>
+    <section id="cop">
+        <h2>商务合作</h2>
+
+        <div class="line"></div>
+        <ul class="coop-list">
+            <li>qq：<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2450678156&amp;site=vcode&amp;menu=yes"
+                      target="_blank">
+                <img title="火柴手写码官方QQ" alt="火柴手写码官方QQ"
+                     src="http://wpa.qq.com/pa?p=2:2335626359:41%20&amp;r=0.694471130380407" border="0"></a></li>
+            <!--{{vm.qq}}-->
+            <!-- <li>邮箱：<a ng-href="mailto:{{vm.email}}">{{vm.email}}</a></li>
+             <li>电话：{{vm.tel}}</li>-->
+        </ul>
+    </section>
+</div>

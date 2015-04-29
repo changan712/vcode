@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <title>vcode alert 方式</title>   
+    <link rel="stylesheet" href="css/vcode.css"/>
+</head>
+<body>
+<div class="form form-inline">
+    <br>
+    <input type="button" value="点击显示验证码" id="btn_show" class="btn btn-success "> &nbsp; &nbsp; &nbsp; &nbsp;
+    <span id="status" class="status" style="display: none">请输入验证码</span>
+</div>
+<br>
+<br>
+                
+</body>
+</html>
+<script src="js/jquery.min.js"></script>
+<script src="js/vcode.js"></script>
+<script>
+    var showBtn = $('#btn_show');
+    var statusSpan = $('#status');
+    var boxInput = null;
+
+    //实例化Vcode;
+    var v = new Vcode({
+        id: 12,
+        //显示蒙版
+        hasMask: true,
+        //两个按钮
+        btns: [
+            {
+                className: 'btn btn-sm btn-default btn-refresh',
+                label: '刷新',
+				role:'change'
+            },
+            {
+                className: 'btn btn-sm  btn-primary  btn-sbm btn-close',
+                label: '提交',
+				role:'hide'
+            }
+        ],
+        //显示文字
+        tips: '请输入图片中的6位验证码'
+    });
+
+  
+
+    //在show之前修改dom结构
+    v.before('show', function () {
+
+        if (window.boxInput) {
+            v.txtCon.removeClass('error success').html('请输入图片中的6位验证码');
+            boxInput.val('');
+            return;
+        }
+        //插入一行input;
+        v.txtCon.after('<div style="padding: 10px 0"> <input type="text" maxlength="6"  style="width:180px" class=" box_input form-control"/></div>');
+        boxInput = v.element.find('.box_input');
+        //为input绑定事件；
+        boxInput.on({
+            'keyup': function () {
+                //keyup时 调用check方法;
+                v.check($(this).val());
+                if ($(this).val().length < v.size) {
+                    v.txtCon.removeClass('error success').html('请输入图片中的6位验证码');
+                }
+            },
+            'paste cut': function () {
+                return false;
+            }
+        });
+
+        //验证正确
+        v.on('onchecktrue', function (code,msg) {
+            v.txtCon.removeClass('error').addClass('success').html(msg);
+        });
+        //验证错误
+        v.on('oncheckfalse', function (code,msg) {
+
+            v.txtCon.removeClass('success').addClass('error').html('errorMsg:'+msg);
+        });
+        //验证图片刷新后
+        v.after('change', function () {
+            boxInput.val('');
+            v.txtCon.removeClass('error success').html('请输入图片中的6位验证码');
+        })
+    });
+	
+	 showBtn.on('click', function () {
+        v.show();
+    });
+
+
+ 
+
+</script>

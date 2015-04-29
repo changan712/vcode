@@ -1,0 +1,85 @@
+
+.main .content {
+  margin: 20px 0;
+}
+
+.container {
+  width: 1400px;
+  max-width: 100%;
+
+}
+
+
+
+.line {
+  border-top: 1px solid #ddd;
+  height: 0;
+  display: block;
+  overflow: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: bold;
+}
+
+h3 {
+  margin-top: 30px;
+}
+
+h5 {
+  margin: 15px 0;
+}
+
+p {
+  text-indent: 2em;
+  margin: 10px 0
+}
+
+li, ul, dl, dd, dt, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.has-error input,.has-error select {
+  background: #fff7f7;
+
+}
+
+.has-success input,.has-success select {
+  background: #f8fff7;
+
+}
+
+//————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+@colorGray: #ccc;
+@bgBlack: #333;
+@colorBlack: #333;
+@colorWhite: #fff;
+@colorSilver: #9d9d9d;
+@fontSize: 14px;
+@fontSong: '宋体' arial;
+@fontYh: 'Microsoft yahei' arial;
+@navHeight: 50px;
+
+.borderRadius(@radius:5px) {
+  border-radius: @radius;
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+}
+
+.rotate(@deg) {
+  -moz-transform: rotate(@deg);
+  -webkit-transform: rotate(@deg);
+  -o-transform: rotate(@deg);
+  -ms-transform: rotate(@deg);
+  transform: rotate(@deg);
+}
+
+.fontSize(@size:14px;) {
+  font-size: @size;
+}
+
+.txtCenter {
+  text-align: center;
+}

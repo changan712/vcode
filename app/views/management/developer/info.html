@@ -1,0 +1,90 @@
+<div class="page-dev-info">
+
+    <form class="form-inline " novalidate name="formInfo" ng-show="!vm.error" ng-submit="vm.updateUserInfo()">
+
+        <table class="table-bordered table table-striped">
+            <tr>
+                <td width="20%">用户名</td>
+                <td>{{vm.info.username}}</td>
+            </tr>
+            <tr>
+                <td>邮箱</td>
+                <td>{{vm.info.email}}</td>
+            </tr>
+
+            <tr>
+                <td>当前身份</td>
+                <td>{{vm.info.type|userType}}</td>
+            </tr>
+            <tr>
+                <td>账号状态</td>
+                <td>{{vm.info.status|userStatus}}</td>
+            </tr>
+            <tr>
+                <td>昵称</td>
+                <td>{{vm.info.nickname}} <input type="text" maxlength="20" ng-if="!vm.info.nickname" ng-show="!vm.info.nickname"
+                                                placeholder="数字字母汉字下划线"
+                                                name="nickname"
+                                                ng-pattern="/^[0-9A-Za-z_\-\u4e00-\u9fa5]*$/"
+                                                ng-model="vm.mdNickName" class="form-control"/>&nbsp;&nbsp;
+                    <span class="error"> <small class="error errorRed"
+                                                ng-show="formInfo.nickname.$dirty&&formInfo.nickname.$error.pattern">
+                        昵称由数字字母汉字下划线组成
+                    </small></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>真实姓名</td>
+                <td>{{vm.info.truename}} <input type="text" maxlength="20" ng-if="!vm.info.truename" ng-show="!vm.info.truename"
+                                                placeholder="您的真实姓名"
+                                                name="truename"
+
+                                                ng-pattern="/^[A-Za-z\u4e00-\u9fa5]*$/"
+                                                ng-model="vm.mdTrueName" class="form-control"/>&nbsp;&nbsp;
+                    <span class="error"> <small class="error errorRed"
+                                                ng-show="formInfo.truename.$dirty&&formInfo.truename.$error.pattern">
+                        请输入您的中文或英文名
+                    </small></span></td>
+            </tr>
+            <tr>
+                <td>手机号码</td>
+                <td>{{vm.info.mobile}} <input type="text" ng-if="!vm.info.mobile" ng-show="!vm.info.mobile"
+                                              placeholder="您的手机号码"
+                                              name="mobile"
+
+                                              ng-pattern="/^1[3|4|5|8|7][0-9]\d{4,8}$/"
+                                              ng-model="vm.mdMobile" class="form-control"/>&nbsp;&nbsp;
+                    <span class="error"> <small class="error errorRed"
+                                                ng-show="formInfo.mobile.$dirty&&formInfo.mobile.$error.pattern">
+                        手机号码格式有误
+                    </small></span></td>
+            </tr>
+            <tr>
+                <td>qq号码</td>
+                <td>{{vm.info.qq}} <input type="text" maxlength="20" ng-if="!vm.info.qq" ng-show="!vm.info.qq" placeholder="您的qq号码"
+                                          ng-model="vm.mdQq"
+                                          name="qq"
+                                          ng-pattern="/^\d*$/"
+                                          class="form-control"/>&nbsp;&nbsp;
+                    <span class="error"> <small class="error errorRed"
+                                                ng-show="formInfo.qq.$dirty&&formInfo.qq.$error.pattern">qq格式有误
+                    </small></span></td>
+            </tr>
+
+            <tr ng-if="!vm.info.nickname||!vm.info.truename||!vm.info.mobile||!vm.info.qq">
+                <td colspan="2">
+                    <button type="submit"
+                            ng-disabled="formInfo.$invalid "
+                            class="btn btn-success pull-right">保存修改
+                    </button>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+    <div class="error data_error " ng-if="vm.error"><span class="glyphicon glyphicon-exclamation-sign"
+                                                          aria-hidden="true"></span> {{vm.error}}
+    </div>
+
+</div>

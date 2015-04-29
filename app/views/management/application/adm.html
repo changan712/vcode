@@ -1,0 +1,44 @@
+<div class="applist">
+    <table class="table table-hover table-bordered table-striped ">
+        <tr>
+            <th>ID</th>
+            <th>应用名称</th>
+            <th>应用行业</th>
+            <th>应用域名</th>
+            <th>手写码组合方式</th>
+            <th>验证码超时(秒)</th>
+            <th>最大错误次数</th>
+            <th>验证秘钥</th>
+            <th>操作</th>
+        </tr>
+        <tr ng-if="vm.error">
+            <td colspan="9">
+                <div class="data_error"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    {{vm.error}}
+                </div>
+            </td>
+        </tr>
+
+        <tr ng-if="!vm.error" ng-repeat="list in vm.appData.applicationList">
+            <td>{{list.id}}</td>
+            <td>{{list.application_name}}</td>
+            <!--    <td>{{list.application_type|applicationType}}</td>-->
+            <td>{{list.business}}</td>
+            <td class="text-overflow url">{{list.application_url}}</td>
+            <td>{{list.verify_mode|verifyMode}}</td>
+            <td>{{list.timeout}}</td>
+
+            <td>{{list.max_num}}</td>
+            <td>{{list.token}}</td>
+            <td width="10%">
+                <a class="btn btn-success btn-xs" ng-click="vm.goToUpdate(list.id)">修改</a>
+                <a class="btn btn-danger btn-xs" ng-click="vm.appDelete(list.id)">删除</a>
+            </td>
+        </tr>
+    </table>
+
+    <pagination ng-if="vm.appData.count>vm.itemPerPage" boundary-links="true" ng-change="vm.pageChanged()"
+                total-items="vm.appData.count" items-per-page="vm.itemPerPage" max-size="10"
+                ng-model="vm.currentPage" class="pagination-sm"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+</div>

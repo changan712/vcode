@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2 ">
+            <div class="panel panel-default">
+                <div class="panel-heading"><span
+                        class="glyphicon glyphicon-picture"></span>&nbsp;<strong>手写码Demo</strong></div>
+                <div class="list-group develop-nav">
+                    <a ng-class="demoId == 'embed' ?'active':''" ng-href="#/demo/pic/embed"><span
+                            class=" pull-right glyphicon glyphicon-chevron-right"></span>嵌入式风格</a>
+                    <a ng-class="demoId == 'min' ?'active':''" ng-href="#/demo/pic/min"><span
+                            class=" pull-right glyphicon glyphicon-chevron-right"></span>简单风格</a>
+                    <a ng-class="demoId == 'min2' ?'active':''" ng-href="#/demo/pic/min2"><span
+                            class=" pull-right glyphicon glyphicon-chevron-right"></span>简单风格2</a>
+                    <a ng-class="demoId == 'layerbox' ?'active':''" ng-href="#/demo/pic/layerbox"><span
+                            class=" pull-right glyphicon glyphicon-chevron-right"></span>浮窗式风格</a>
+                    <a ng-class="demoId == 'alert' ?'active':''" ng-href="#/demo/pic/alert"><span
+                            class=" pull-right glyphicon glyphicon-chevron-right"></span>弹窗式风格</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-10">
+            <div class="main">
+                <div ui-view id="demo_content"></div>
+            </div>
+
+        </div>
+    </div>
+</div>

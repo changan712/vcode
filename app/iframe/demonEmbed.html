@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>vcodeEmbed 简单调用方式</title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet/less" href="/app/styles/main.less">
+    <link rel="stylesheet" href="/app/lib/prettify/prettify.css"/>
+    <link rel="stylesheet" href="/app/vcodefile/vcode.css"/>
+    <style>
+
+        .status{
+            font-size: 20px;
+
+        }
+
+        .status .glyphicon{
+          position: relative;
+            top:10px
+        }
+        .error{
+            color:#c00;
+        }
+        .success{
+            color:#0a0;
+        }
+    </style>
+</head>
+<body>
+<div class="form form-inline">
+    <br>
+    <input id="verify_code"  style="width: 200px; display: inline-block" class="text form-control " type="text">
+    <span id="wrap_img"
+          style="display: inline-block;height: 40px; width: 120px; overflow: hidden; vertical-align: middle"></span>
+    <span id="status" class="status"></span>
+    <br>
+    <br>
+    <pre class="pre-scrollable ">
+
+  //实例化VcodeEmbed
+     new VcodeEmbed({
+        id: 12,//(必选) 您自己的应用id
+        wrapImg: '#wrap_img', //(必选) 验证码图片容器 juqery选择符，或容器元素
+        baseInput: '#verify_code', //(必选) 验证码输入框juqery选择符，或输入框元素
+        elementNotice: '#status', //(可选) 错误显示位置
+        successHTML:'&lt;span class="glyphicon glyphicon-ok-circle"&gt;&lt;/span&gt;', //（可选） 定义自己的验证成功时提示文字或图片,或使用默认文字
+        errorHTML:'&lt;span class="glyphicon glyphicon-remove-circle"&gt;&lt;/span&gt;'//（可选） 定义自己的验证失败时提示文字或图片,或使用默认文字
+    });
+    <br>
+
+</pre>
+</div>
+<br>
+</body>
+</html>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/app/lib/prettify/prettify.js"></script>
+<script>
+    $('pre').addClass(' prettyprint');
+    prettyPrint();
+
+</script>
+<script src="/app/vcodefile/vcode.js"></script>
+<script>
+
+    //实例化VcodeLayerBox
+    new VcodeEmbed({
+        id: 12,//(必选) 您自己的应用id
+        wrapImg: '#wrap_img',
+        baseInput: '#verify_code', //(必选) 验证码输入框juqery选择符，或输入框元素
+        elementNotice: '#status', //(可选) 错误显示位置
+        successHTML:'<span class="glyphicon glyphicon-ok-circle"></span>', //（可选） 定义自己的验证成功时提示文字或图片,或使用默认文字
+        errorHTML:'<span class="glyphicon glyphicon-remove-circle"></span>'//（可选） 定义自己的验证失败时提示文字或图片,或使用默认文字
+    });
+
+
+</script>

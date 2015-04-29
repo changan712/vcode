@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head >  
+    <meta charset="UTF-8">
+    <title>vcode layerbox 方式</title>   
+    <link rel="stylesheet" href="css/vcode.css"/>
+</head>
+<body>
+<div class="form form-inline">  
+    <input id="verify_code" class="text form-control " type="text" maxlength="6">
+    <input type="submit" id="btn_sbm">
+    <span id="status" class="status" style="display: none">请输入验证码</span>
+</div>
+</body>
+</html>
+<script src="js/jquery.min.js"></script>
+<script src="js/vcode.js"></script>
+<script>
+
+    var sbmBtn = $('#btn_sbm');
+    var input = $('#verify_code');
+    var statusSpan = $('#status');
+    //实例化Vcode
+
+
+    var v = new Vcode({
+
+        id: 12,
+        //验证框定位的参照元素
+        baseElement: input,
+        //两个按钮
+        btns: [
+            {
+                className: 'btn btn-sm btn-default btn-refresh',
+                label: '刷新',
+				role:'change'
+            },
+            {
+                className: 'btn btn-sm  btn-primary  btn-sbm btn-close',
+                label: '关闭',
+				role:'hide'
+            }
+        ],
+        //显示文字
+        tips: '请输入图片中6位数字验证码'
+    });
+
+
+    input.on({
+        'keyup': function () {
+            v.check(input.val());
+            if (input.val().length < v.size) {
+                statusSpan.hide();
+            }
+        },
+        'focus': function () {
+            v.show();
+        },
+        'paste cut': function () {
+            return false;
+        }
+    });
+
+
+
+    //刷新验证图片后  清空input的值；
+    v.after('change', function () {
+        input.val('');
+    });
+
+    //验证通过
+    v.on('onchecktrue', function (code, msg) {
+        statusSpan.removeClass('error').addClass('success').html(msg).show();
+    });
+
+    //验证不通过
+    v.on('oncheckfalse', function (code, msg) {
+        statusSpan.removeClass('success').addClass('error').html('errorCode:'+code+'   errorMsg:'+msg).show();
+    });
+
+    sbmBtn.on('click', function () {
+        v.check(input.val())
+    });
+
+</script>

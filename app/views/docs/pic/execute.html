@@ -1,0 +1,314 @@
+<h5>1 引入默认样式文件，或引入自定义样式文件 </h5>
+<pre>&lt;link rel="stylesheet" href="http://vcode.360sht.com/app/vcodefile/vcode.css"/&gt;</pre>
+<h5>2 引入vcode.js </h5>
+<pre>&lt;script src="http://vcode.360sht.com/app/vcodefile/vcode.js">&lt;/script&gt; </pre>
+<h5>3 执行</h5>
+<pre>
+//实例化Vcode类;
+var vcodeObject = new Vcode({options}) </pre>
+<h5>4 Vcode类概述 </h5>
+Vcode类是此项目基础js框架,依赖jquery1.5.0以上版本，灵活、易扩展，但调用相对复杂。如需具体功能性组件，敬请期待其它子类。
+<h5>4.1 参数 </h5>
+ <div class="table-responsive">
+<table class="table table-bordered   table-striped">
+    <tr>
+        <th>名称</th>
+        <th>类型</th>
+        <th>默认值</th>
+        <th width="70%">描述</th>
+    </tr>
+    <tr>
+        <td>id(必选)</td>
+        <td>String/Number</td>
+        <td>空</td>
+        <td>应用id</td>
+    </tr>
+    <tr>
+        <td>hasCloser</td>
+        <td>Boolean</td>
+        <td>true</td>
+        <td>是否显示关闭“x”图标</td>
+    </tr>
+    <tr>
+        <td>size</td>
+        <td>Number</td>
+        <td>6</td>
+        <td>验证码长度</td>
+    </tr>
+    <tr>
+        <td>width</td>
+        <td>Number</td>
+        <td>240</td>
+        <td>验证框宽度</td>
+    </tr>
+
+    <tr>
+        <td>tips</td>
+        <td>String</td>
+        <td>空</td>
+        <td>提示文字</td>
+    </tr>
+    <tr>
+        <td>btns</td>
+        <td>Array</td>
+        <td>空</td>
+        <td>按钮数组 用来生成提示框按钮 如：<pre>
+btns: [
+    {
+        //按钮ClassName 多个以空格分开;
+        className: 'btn btn-sm btn-default btn-refresh',
+        label: '刷新'//按钮文字;
+    },
+    {
+        className: 'btn btn-sm  btn-primary  btn-sbm btn-close',
+        label: '关闭'
+    }
+ ],</pre>
+        </td>
+    </tr>
+
+    <tr>
+        <td>baseElement</td>
+        <td>Element</td>
+        <td>document.body</td>
+        <td>验证框定位的参照元素,如采用默认值document.body,验证框会相对屏幕居中对齐；如传递其它元素，验证框会同传递元素左下角对齐</td>
+    </tr>
+    <tr>
+        <td>hasMask</td>
+        <td>Boolean</td>
+        <td>false</td>
+        <td>是否显示蒙版</td>
+    </tr>
+    <tr>
+        <td>template</td>
+        <td>String</td>
+        <td></td>
+        <td>通常情况不需要自定义模板，如自定义模板必须具备.vcode_img,.vcode_txt_con,.vcode_sbm 三个元素。
+        </td>
+    </tr>
+</table>
+ </div>
+<h5>4.2 实例属性 </h5>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：Boolean</span><span class="tt">result</span>
+        vcodeObject.result
+    </dt>
+    <dd>vcodeObject当前验证状态</dd>
+</dl>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：jquery</span><span class="tt">element</span>
+        vcodeObject.element
+    </dt>
+    <dd>验证框dom结构引用</dd>
+</dl>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：jquery</span><span class="tt">img</span>
+        vcodeObject.img
+    </dt>
+    <dd>验证图片引用</dd>
+</dl>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：jquery</span><span class="tt">txtCon</span>
+        vcodeObject.txtCon
+    </dt>
+    <dd>提示文字父容易dom引用</dd>
+</dl>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：jquery</span><span class="tt">btnCon</span>
+        vcodeObject.btnCon
+    </dt>
+    <dd>提示框按钮父容器dom引用</dd>
+</dl>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：Boolean</span><span class="tt">isShow</span>
+        vcodeObject.isShow
+    </dt>
+    <dd>当前显示状态</dd>
+</dl>
+
+<h5>4.3 实例方法 </h5>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：Vcode</span><span class="tt">show</span>vcodeObject.show()
+    </dt>
+    <dd>显示验证框</dd>
+</dl>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：Vcode</span><span class="tt">hide</span>vcodeObject.hide()
+    </dt>
+    <dd>隐藏验证框</dd>
+</dl>
+<dl class="md">
+    <dt><span class="tt">destroy</span>vcodeObject.destroy()</dt>
+    <dd>自我销毁,移除绑定事件，dom结构</dd>
+</dl>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：Vcode</span><span class="tt">change</span>vcodeObject.change()
+    </dt>
+    <dd>刷新验证码</dd>
+</dl>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：Vcode</span><span class="tt">check</span>vcodeObject.check(code,successCallback,errorCallback)
+    </dt>
+    <dd><code>code</code> String 必选 待验证内容<br>
+        <code>successCallback</code> Function 可选 验证成功回调<br>
+        <code>errorCallback</code> Function 可选 验证失败回调<br>
+
+    </dd>
+    <dd>异步验证当前code值是否正确，错误时触发 <code>oncheckfalse</code> 事件;正确时触发 <code>onchecktrue</code> 事件。可用绑定事件获取验证结果，也可用回调获取验证结果</dd>
+
+</dl>
+
+<dl class="md">
+    <dt><span class="pull-right ">返回值：Vcode</span><span class="tt">position</span>vcodeObject.position(pinObject,
+        [baseObject])
+    </dt>
+    <dd> <code>pinObject</code> Object 必选 目标定位元素<br>
+        字面量对象 <code>{ element: a, x: 10, y: 10 }</code>，element 为需定位元素， x 和 y 表示定位元素的定位点。<br>
+    </dd>
+    <dd>
+        <code>baseObject</code> Object 可选 基准定位元素<br>
+        字面量对象 <code>{ element: b, x: 10, y: 10 }</code>，element 为基准定位元素，x 和 y 表示基准定位元素的定位点。 <br>
+    </dd>
+
+    <dd>
+                            <pre>
+//在验证框显示前把位置定位到baseElement的左下角
+vcodeObject.before('show'，function(){
+    this.position({
+        element: this.element,
+        x: 0,
+        y: 0
+    }, {
+        element: this.baseElement,
+        x: 0,
+        y: '100%'
+    })
+})</pre>
+    </dd>
+</dl>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：Vcode</span><span class="tt">on</span>vcodeObject.on(events, callback )
+    </dt>
+    <dd><code>events</code> string 必选 注册事件名</dd>
+    <dd><code>callback</code> Function 必选 回调函数</dd>
+    <dd>给对象添加事件回调函数。
+                            <pre>
+vcodeObject.on('oncheckfalse ',function(){
+     console.log('check false');
+})</pre>
+    </dd>
+</dl>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：Vcode</span><span class="tt">off</span>vcodeObject.off([eventName],[callback])
+    </dt>
+    <dd><code>eventName</code> String 可选 被移除的事件名
+    </dd>
+    <dd><code>callback</code> String 可选 被移除的回调函数名
+    </dd>
+    <dd>从对象上移除事件回调函数。当省略某个参数时，表示取该参数的所有值。</dd>
+</dl>
+
+<dl class="md">
+    <dt><span class="pull-right ">返回值：Vcode</span><span class="tt">trigger</span>vcodeObject.trigger(eventName, [*args])
+    </dt>
+    <dd><code>eventName</code> String 必选 触发事件名
+    </dd>
+    <dd><code>args</code>  可选 传递给回调函数的参数
+    </dd>
+    <dd>触发一个或多个事件（用空格分隔）。*args 参数会依次传给回调函数。</dd>
+</dl>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：Vcode</span><span class="tt">before</span>vcodeObject.before(methodName, callback)
+    </dt>
+    <dd><code>methodName</code> String 必选 vcodeObject实例方法名
+    </dd>
+    <dd><code>callback</code>  Function 必选 回调函数
+    </dd>
+    <dd>在 vcodeObject[methodName] 方法执行前，先执行 callback 函数。可以在 callback 中 return false 来阻止原函数执行。</dd>
+                        <pre>
+//在vcodeObject.show执行前先执行回调函数
+vcodeObject.before('show'，function(){
+   console.log('before show')
+})</pre>
+</dl>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：Vcode</span><span class="tt">after</span>vcodeObject.after(methodName, callback)
+    </dt>
+    <dd><code>methodName</code> String 必选 vcodeObject实例方法名
+    </dd>
+    <dd><code>callback</code>  Function 必选 回调函数
+    </dd>
+    <dd>在 vcodeObject[methodName] 方法执行后，执行 callback 函数。
+                          <pre>
+//在vcodeObject.show执行后执行回调函数
+vcodeObject.after('show'，function(){
+   console.log('after show')
+})</pre>
+
+    </dd>
+</dl>
+<h5>4.4事件 </h5>
+<div class="table-responsive">
+<table class="table  table-bordered table-striped">
+    <tr>
+        <th>事件名</th>
+        <th>描述</th>
+    </tr>
+    <tr>
+        <td>oncheckfalse</td>
+        <td>校验失败触发 <code>oncheckfalse</code> 事件</td>
+    </tr>
+    <tr>
+        <td>onchecktrue</td>
+        <td>校验成功触发 <code>onchecktrue</code> 事件</td>
+    </tr>
+
+</table>
+</div>
+<br>
+<br>
+<h5>5 VcodeLayerBox类概述 </h5>
+VcodeLayerBox类继承于Vcode，是对Vcode复杂调用的简单封装。
+
+<h5>5.1 参数 </h5>
+        <div class="table-responsive">
+<table class="table table-bordered table-responsive  table-striped">
+    <tr>
+        <th>名称</th>
+        <th>类型</th>
+        <th>默认值</th>
+        <th width="70%">描述</th>
+    </tr>
+    <tr>
+        <td>id(必选)</td>
+        <td>String/Number</td>
+        <td>空</td>
+        <td>应用id</td>
+    </tr>
+    <tr>
+        <td>baseInput(必选)</td>
+        <td>jquerySelector/Element</td>
+        <td>空</td>
+        <td>验证码输入框juqery选择符，或输入框元素</td>
+    </tr>
+    <tr>
+        <td>elementError</td>
+        <td>jquerySelector/Element</td>
+        <td>空</td>
+        <td>错误显示位置</td>
+    </tr>
+</table>
+        </div>
+<h5>5.2 实例属性 </h5>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：Boolean</span><span class="tt">input</span>
+        vcodeObject.input
+    </dt>
+    <dd>验证码输入框引用</dd>
+</dl>
+<dl class="md">
+    <dt><span class="pull-right ">返回值：jquery</span><span class="tt">errorCon</span>
+        vcodeObject.errorCon
+    </dt>
+    <dd>错误显示dom引用</dd>
+</dl>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>vcodeLayerBox 简单调用方式</title>
+   <link rel="stylesheet" href="css/vcode.css"/>
+</head>
+<body>
+<div class="form form-inline">    
+    <input id="verify_code" class="text form-control " type="text" >
+    <input type="submit" id="btn_sbm" class="btn btn-default">
+    <span id="status" class="status" style="display: none">请输入验证码</span>
+</div>
+<br>
+</body>
+</html>
+<script src="js/jquery.min.js"></script>
+<script src="js/vcode.js"></script>
+<script>
+  //实例化VcodeLayerBox
+    new VcodeLayerBox({
+        id: 12,//(必选) 您自己的应用id
+        baseInput: '#verify_code', //(必选) 验证码输入框jquery选择符，或输入框元素
+        tips: '请输入6位验证码',
+        className: 'vcode_theme_min',
+        btns: [
+            {
+                className: 'btn btn-xs btn-default',
+                label: '刷新',
+                role: 'change'
+            }
+        ]
+    });
+
+
+</script>

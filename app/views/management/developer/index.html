@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2 ">
+            <div class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-user"></span> &nbsp;
+                    <strong>开发者中心</strong></div>
+                <div class="list-group develop-nav">
+                    <a ng-class="vid == 'info' ?'active':''" ng-href="#/management/developer/info"><span
+                            class=" pull-right glyphicon glyphicon-chevron-right"></span>开发者信息</a>
+                    <a ng-class="vid == 'msg' ?'active':''" ng-href="#/management/developer/msg"><span
+                            class=" pull-right glyphicon glyphicon-chevron-right"></span>消息通知</a>
+                    <a ng-class="vid == 'modpwd' ?'active':''" ng-href="#/management/developer/modpwd"><span
+                            class=" pull-right glyphicon glyphicon-chevron-right"></span>修改密码</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-10">
+            <div class="main">
+
+                    <div ui-view id="dev_content"></div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

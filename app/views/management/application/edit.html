@@ -1,0 +1,135 @@
+<form class=" app-add" novalidate name="formappadd" ng-submit="appMod()">
+    <div class="form-group">
+        <label for="exampleInputEmail1" class=" control-label">应用类型</label>
+
+        <div class="">
+            <!--type-->
+            <label> <input name="apptype" ng-model="vm.appType" value="1" type="radio"/> 网站</label>
+        </div>
+    </div>
+    <div class="form-group">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1" class="control-label">应用名称</label>
+        <!--name-->
+        <div ng-class="formappadd.appname.$dirty?(formappadd.appname.$invalid?'has-error':'has-success'):''">
+            <input type="text" maxlength="20" name="appname" placeholder="请填写应用名称,由数字、字母、中文组成" class="form-control"
+                   ng-pattern="/^[0-9A-Za-z_\-\u4e00-\u9fa5]*$/"
+                   required ng-model="vm.appName">
+        </div>
+
+    </div>
+    <div class="form-group">
+
+        <div class="error" ng-show="formappadd.appname.$dirty&& formappadd.appname.$invalid">
+            <small class="error" ng-show="formappadd.appname.$error.required"> 请输入应用名称</small>
+            <small class="error" ng-show="formappadd.appname.$error.pattern"> 应用名称中不能含有特殊符号</small>
+        </div>
+
+
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1" class=" control-label">应用行业</label>
+
+        <!--business-->
+        <div ng-class="formappadd.appbusiness.$dirty?(formappadd.appbusiness.$invalid?'has-error':'has-success'):''">
+            <select name="appbusiness" class="form-control" required ng-model="vm.appBusiness">
+                <option value="">所属行业</option>
+                <option value="金融">金融</option>
+                <option value="在线社区">在线社区</option>
+                <option value="房地产">房地产</option>
+                <option value="医疗">医疗</option>
+                <option value="旅游">旅游</option>
+                <option value="教育">教育</option>
+                <option value="互联网">互联网</option>
+                <option value="智能硬件">智能硬件</option>
+                <option value="生活信息">生活信息</option>
+                <option value="其它">其它</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+
+        <div class="error" ng-show="formappadd.appbusiness.$dirty&& formappadd.appbusiness.$invalid">
+            <small class="error" ng-show="formappadd.appbusiness.$error.required">请选择应用行业</small>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1" class=" control-label">网站域名</label>
+
+        <div ng-class="formappadd.appurl.$dirty?(formappadd.appurl.$invalid?'has-error':'has-success'):''">
+            <input type="url" name="appurl" required ng-model="vm.appUrl" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+
+        <div class="error" ng-show="formappadd.appurl.$dirty&& formappadd.appurl.$invalid">
+            <small class="error" ng-show="formappadd.appurl.$error.url"> 网站域名格式错误</small>
+            <small class="error" ng-show="formappadd.appurl.$error.required"> 请输入网站域名</small>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1" class=" control-label">验证方式</label>
+        <!--appvm-->
+        <div ng-class="formappadd.appvm.$dirty?(formappadd.appvm.$invalid?'has-error':'has-success'):''">
+            <select name="appvm" ng-model="vm.appVm" required class="form-control">
+                <option value="">请选择验证方式</option>
+                <option value="1">数字</option>
+                <option value="2">字母</option>
+                <option value="3">数字+字母</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="error" ng-show="formappadd.appvm.$dirty&& formappadd.appvm.$invalid">
+            <small class="error" ng-show="formappadd.appvm.$error.required"> 请选择验证方式</small>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class=" control-label">单次最大错误验证次数</label>
+
+        <div ng-class="formappadd.appmaxnumn.$dirty?(formappadd.appmaxnumn.$invalid?'has-error':'has-success'):''">
+            <input type="number" required name="appmaxnumn" ng-model="vm.appMaxNum" class="form-control">
+        </div>
+
+    </div>
+    <div class="form-group">
+
+        <div class="error" ng-show="formappadd.appmaxnumn.$dirty&& formappadd.appmaxnumn.$invalid">
+            <small class="error" ng-show="formappadd.appmaxnumn.$error.number"> 请输入正确数值</small>
+            <small class="error" ng-show="formappadd.appmaxnumn.$error.required"> 验证次数不能为空</small>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label class=" control-label">验证码超时（秒）</label>
+
+        <div ng-class="formappadd.apptimeout.$dirty?(formappadd.apptimeout.$invalid?'has-error':'has-success'):''">
+            <input type="number" min="1" max="10000" required name="apptimeout" ng-model="vm.appTimeout"
+                   class="form-control">
+        </div>
+
+    </div>
+    <div class="form-group">
+
+        <div class="error" ng-show="formappadd.apptimeout.$dirty&& formappadd.apptimeout.$invalid">
+            <small class="error" ng-show="formappadd.apptimeout.$error.number"> 请输入正确数值</small>
+            <small class="error" ng-show="formappadd.apptimeout.$error.required"> 验证码超时不能设置为空</small>
+            <small class="error" ng-show="formappadd.apptimeout.$error.max"> 验证码超时不能大于10000秒</small>
+            <small class="error" ng-show="formappadd.apptimeout.$error.min"> 验证码超时不能小于1秒</small>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="sbm">
+            <button type="submit" ng-disabled=" formappadd.$invalid||vm.isPosting" class="btn btn-primary">保存</button>
+            <button type="button" ng-click="vm.reset()" ng-show="vm.isUpdate" class="btn btn-default">重置修改</button>
+        </div>
+    </div>
+
+
+</form>

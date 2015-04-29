@@ -1,0 +1,175 @@
+
+<div class="container page-reg">
+    <div class="panel panel-default ">
+        <div class="panel-heading">注册账号</div>
+        <div class="panel-body">
+            <!-- <ul class="status row">
+                 <li class="col-sm-4  " ng-class="vm.step>0?'active':''">1.填写账户资料</li>
+                 <li class="col-sm-4" ng-class="vm.step>1?'active':''">2.激活邮箱</li>
+                 <li class="col-sm-4 " ng-class="vm.step>2?'active':''">3.注册成功</li>
+             </ul>-->
+
+            <ul class="step reg">
+
+                <li class="st1 active">
+                    <form class="form-horizontal" novalidate name="formReg" ng-submit="vm.resister()">
+                        <!--用户名-->
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">用户名：</label>
+
+                            <div class="col-sm-10"
+                                 ng-class="formReg.username.$dirty?(formReg.username.$invalid?'has-error':'has-success'):''">
+                                <input autocomplete="off" type="text" class="form-control" name="username"
+                                       ng-model="reg.username"
+                                       ng-minlength="5"
+                                       ng-maxlength="20" maxlength="20" ng-pattern="/^[A-Za-z]{1}[0-9A-Za-z_]*$/"
+                                       required
+                                       user-not-exist
+                                       placeholder="5-20个字符，由字母、数字、下划线组成，以字母开头">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <div class="error" ng-show="formReg.username.$dirty&& formReg.username.$invalid">
+                                    <small class="error" ng-show="formReg.username.$error.required">用户名不能为空</small>
+                                    <small class="error"
+                                           ng-show="formReg.username.$error.minlength&&!formReg.username.$error.pattern">
+                                        用户名至少由5个字符组成
+                                    </small>
+                                    <small class="error" ng-show="formReg.username.$error.pattern">
+                                        用户名不符合规则(5-20个字符，由字母、数字、下划线组成，以字母开头)
+                                    </small>
+                                    <small class="error" ng-show="formReg.username.$error.usernotexist">
+                                        该用户名已经存在
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <!--邮箱-->
+                        <div class="form-group"
+                                >
+                            <label for="inputPassword3" class="col-sm-2 control-label">邮箱：</label>
+
+                            <div class="col-sm-10"
+                                 ng-class="formReg.email.$dirty?(formReg.email.$invalid?'has-error':'has-success'):''">
+                                <input autocomplete="off" type="email" ng-model="reg.email" class="form-control"
+                                       required name="email"
+                                       email-not-exist
+                                       ng-pattern="/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+\.([a-zA-Z0-9_-])+/"
+                                       placeholder="你的常用邮箱地址">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <div class="error" ng-show="formReg.email.$dirty&& formReg.email.$invalid">
+                                    <small class="error" ng-show="formReg.email.$error.required">邮箱不能为空</small>
+                                    <small class="error"
+                                           ng-show="formReg.email.$error.pattern||formReg.email.$error.email">输入邮件的格式不正确
+                                    </small>
+                                    <small class="error" ng-show="formReg.email.$error.emailnotexist">该邮箱已经被注册</small>
+                                </div>
+                            </div>
+                        </div>
+                        <!--密码-->
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">密码：</label>
+
+                            <div class="col-sm-10"
+                                 ng-class="formReg.password.$dirty?(formReg.password.$invalid?'has-error':'has-success'):''">
+                                <input type="password" class="form-control" ng-model="reg.password" required
+                                       ng-minlength="6"
+                                       name="password" placeholder="最小长度6位">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <div class="error" ng-show="formReg.password.$dirty&& formReg.password.$invalid">
+                                    <small class="error" ng-show="formReg.password.$error.required">密码不能为空</small>
+                                    <small class="error" ng-show="formReg.password.$error.minlength">密码最小长度为6位</small>
+                                </div>
+                            </div>
+                        </div>
+                        <!--确认密码-->
+                        <div class="form-group"
+                                >
+                            <label for="inputPassword3" class="col-sm-2 control-label">确认密码：</label>
+
+                            <div class="col-sm-10"
+                                 ng-class="formReg.passwordRepeate.$dirty?(formReg.passwordRepeate.$invalid?'has-error':'has-success'):''">
+                                <input type="password" ng-disabled="formReg.password.$invalid" class="form-control"
+                                       pwd-repeat-true pwd-repeat-true-form='formReg' pwd-repeat-true-input='password'
+                                       ng-model="reg.passwordRepeate" required
+                                       name="passwordRepeate" placeholder="请确认密码">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <div class="error"
+                                     ng-show="formReg.passwordRepeate.$dirty&&formReg.passwordRepeate.$invalid">
+                                    <small class="error" ng-show="formReg.passwordRepeate.$error.repeatTrue">两次密码不一致
+                                    </small>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">验证码：</label>
+
+                            <div class="col-sm-10"
+                                 ng-class="formReg.code.$dirty?(formReg.code.$invalid?'has-error':'has-success'):''">
+                                <input type="text" id="verify_code" class="form-control"
+                                       ng-model="reg.code" required
+                                       verify
+                                       name="code" placeholder="请输入验证码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="clause" ng-model="reg.clauseChecked">我已阅读并同意手写码《<a
+                                            href="javascript:void(0)">服务协议</a>》 服务协议
+                                    </label>
+                                    <span class="error inline-error" ng-show="!reg.clauseChecked"><small class="error">
+                                        请同意服务条款完成注册
+                                    </small> </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" ng-disabled="formReg.$invalid" class="btn btn-primary">注册</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </li>
+                <!--    <li class="st2" ng-class="vm.step==2?'active':''">
+                        <h4><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;激活邮箱</h4>
+                        感谢注册！确认邮箱已发送至你的注册邮箱{{vm.email}}。请进入邮箱查看邮件并激活平台账号。
+
+                        <div class="sbm">
+                            <a class="btn-success btn">登陆邮箱</a>
+                        </div>
+                        <div class="ins">
+                            没有收到邮箱？<br>
+                            1、请检查邮箱地址是否正确，你可以返回 <a ng-href="#/reg/1">重新注册</a><br>
+                            2、检查你的邮件垃圾箱<br>
+                            3、若仍未收到确认，请尝试 <a>重新发送邮箱激活码</a>
+                        </div>
+                    </li>   <li class="st3" ng-class="vm.step==2?'active':''">
+
+                        <h4>注册成功，请您进入<a>管理中心</a>，添加应用！</h4>
+
+
+                    </li>-->
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
