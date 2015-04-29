@@ -7,6 +7,7 @@
 ## Vcode.js (手写码前端实现)
 
 [文档地址](http://vcode.360sht.com/app/index.html#/docs/pic/api)     
-[源码地址](https://github.com/tinshee/vcode/blob/master/app/vcodefile/vcode.js) 
+[源码地址](https://github.com/tinshee/vcode/blob/master/app/vcodefile/vcode.js)    
+[手写码预览地址](http://vcode.360sht.com/app/index.html#/demo/pic/min2)
 
 
