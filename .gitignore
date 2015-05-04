@@ -43,3 +43,4 @@ Temporary Items
 .apdisk
 .svn/
 bower_components/
+node_modules/
