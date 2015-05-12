@@ -1,0 +1,551 @@
+<!DOCTYPE html> <html> <head> <meta http-equiv=Content-Type content="text/html; charset=UTF-8"> <script type=text/javascript src=./11_files/safeCall_8a8b5ca0.js></script> <script type=text/javascript src=./11_files/browser_644ef66c.js></script> <script type=text/javascript src=./11_files/jsmart_92ef846f.js></script> <script type=text/javascript src=./11_files/userMsg_a724096c.js></script> <script type=text/javascript src=./11_files/wikiUserLogin_73800e8a.js></script> <script type=text/javascript src=./11_files/userbar_a280cc31.js></script> <script type=text/javascript src=./11_files/redEnv_42a1ca75.js></script> <script type=text/javascript src=./11_files/basenewviewjs_7e0b89af.js></script> <script type=text/javascript src=./11_files/rangy_d94d5f81.js></script> <script type=text/javascript src=./11_files/history_31d6cfe0.js></script> <script type=text/javascript src=./11_files/controller_0ac841ae.js></script> <script type=text/javascript src=./11_files/notation_4acf56d9.js></script> <script type=text/javascript src=./11_files/framework_8a71980e.js></script> <script type=text/javascript src=./11_files/jquery_ba31c430.js></script> <script type=text/javascript src=./11_files/reference_03a41edb.js></script> <script type=text/javascript src=./11_files/safeCall_8a8b5ca0(1).js></script> <script type=text/javascript src=./11_files/browser_644ef66c(1).js></script> <script type=text/javascript src=./11_files/jsmart_92ef846f(1).js></script> <script type=text/javascript src=./11_files/userMsg_a724096c(1).js></script> <script type=text/javascript src=./11_files/wikiUserLogin_73800e8a(1).js></script> <script type=text/javascript src=./11_files/userbar_a280cc31(1).js></script> <script type=text/javascript src=./11_files/redEnv_42a1ca75(1).js></script> <script type=text/javascript src=./11_files/basenewviewjs_7e0b89af(1).js></script> <script type=text/javascript src=./11_files/rangy_d94d5f81(1).js></script> <script type=text/javascript src=./11_files/history_31d6cfe0(1).js></script> <script type=text/javascript src=./11_files/controller_0ac841ae(1).js></script> <script type=text/javascript src=./11_files/notation_4acf56d9(1).js></script> <script type=text/javascript src=./11_files/framework_8a71980e(1).js></script> <script type=text/javascript src=./11_files/jquery_ba31c430(1).js></script> <title>火柴手写码_百度百科</title> <link rel=apple-touch-icon href=http://img.baidu.com/img/baike/wap/iphone4_logo.png> <link rel=stylesheet href=http://baike.bdimg.com/static/lemma/layout/layout_8070c777.css> <link rel=stylesheet type=text/css href=./11_files/view3_52a8c6c2.css> <script>(function () {
+        window.PDC = {
+            _timing: {},
+            _opt: {sample: 0.01},
+            _analyzer: {loaded: false, url: "http://static.tieba.baidu.com/tb/pms/wpo.pda.js?v=2.9", callbacks: []},
+            _render_start: +new Date,
+            extend: function (b, a) {
+                for (property in b) {
+                    a[property] = b[property]
+                }
+                return a
+            },
+            metadata: function () {
+                var c = this._opt;
+                var e = {
+                    env: {
+                        user: (c.is_login == true ? 1 : 0),
+                        product_id: c.product_id,
+                        page_id: PDC._is_sample(c.sample) ? c.page_id : 0
+                    }, render_start: this._render_start, timing: this._timing
+                };
+                var a = [];
+                var d = c.special_pages || [];
+                for (var b = 0; b < d.length; b++) {
+                    if (PDC._is_sample(d[b]["sample"])) {
+                        a.push(d[b]["id"])
+                    }
+                }
+                if (a.length > 0) {
+                    e.env["special_id"] = "[" + a.join(",") + "]"
+                }
+                return e
+            },
+            init: function (a) {
+                this.extend(a, this._opt)
+            },
+            mark: function (a, b) {
+                this._timing[a] = b || +new Date
+            },
+            view_start: function () {
+                this.mark("vt")
+            },
+            tti: function () {
+                this.mark("tti")
+            },
+            page_ready: function () {
+                this.mark("fvt")
+            },
+            first_screen: function () {
+                var b = document.getElementsByTagName("img"), g = document.getElementsByTagName("IFRAME"), c = +new Date;
+                var j = [], e = this;
+
+                function f(i) {
+                    var l = 0;
+                    l = window.pageYOffset ? window.pageYOffset : document.documentElement.scrollTop;
+                    try {
+                        l += i.getBoundingClientRect().top
+                    } catch (k) {
+                    } finally {
+                        return l
+                    }
+                }
+
+                this._setFS = function () {
+                    var m = e._opt["fsHeight"] || document.documentElement.clientHeight;
+                    for (var l = 0; l < j.length; l++) {
+                        var n = j[l], k = n.img, p = n.time, o = f(k);
+                        if (o > 0 && o < m) {
+                            c = p > c ? p : c
+                        }
+                    }
+                    e._timing.fs = c
+                };
+                var h = function () {
+                    if (this.removeEventListener) {
+                        this.removeEventListener("load", h, false)
+                    }
+                    j.push({img: this, time: +new Date})
+                };
+                for (var a = 0; a < b.length; a++) {
+                    (function () {
+                        var i = b[a];
+                        if (i.addEventListener) {
+                            !i.complete && i.addEventListener("load", h, false)
+                        } else {
+                            if (i.attachEvent) {
+                                i.attachEvent("onreadystatechange", function () {
+                                    if (i.readyState == "complete") {
+                                        h.call(i, h)
+                                    }
+                                })
+                            }
+                        }
+                    })()
+                }
+                for (var a = 0, d = g.length; a < d; a++) {
+                    (function () {
+                        var i = g[a];
+                        if (i.attachEvent) {
+                            i.attachEvent("onload", function () {
+                                h.call(i, h)
+                            })
+                        } else {
+                            i.addEventListener("load", h, false)
+                        }
+                    })()
+                }
+            }
+        };
+        if (document.attachEvent) {
+            window.attachEvent("onload", function () {
+                PDC.mark("let");
+                PDC._setFS && PDC._setFS();
+                PDC._opt.ready !== false && PDC._load_analyzer()
+            })
+        } else {
+            window.addEventListener("load", function () {
+                PDC.mark("lt")
+            }, false)
+        }
+    })();</script> <link rel=stylesheet type=text/css href=./11_files/framework_180c7805.css> <link rel=stylesheet type=text/css href=./11_files/redEnv_afa1db3f.css> <link rel=stylesheet type=text/css href=./11_files/versionInfo_a1f8015e.css> <link rel=stylesheet type=text/css href=./11_files/versionFlag_31d6cfe0.css> <link rel=stylesheet type=text/css href=./11_files/lemmaTitle_cdb302b8.css> <link rel=stylesheet type=text/css href=./11_files/baseviewcss3_32c56a87.css> <link rel=stylesheet type=text/css href=./11_files/picture_ac8cbf16.css> <link rel=stylesheet type=text/css href=./11_files/lemma_picture_740b91a6.css> <link rel=stylesheet type=text/css href=./11_files/lemma_side_0685a54d.css> <link rel=stylesheet type=text/css href=./11_files/notation_875b2d53.css> <link rel=stylesheet type=text/css href=./11_files/view_lemma_fb36c4d7.css> <link rel=stylesheet type=text/css href=./11_files/history_52a8c6c2.css> <script>window.onerror = function () {
+        return false;
+    }</script> <script type=text/javascript src=./11_files/base_b0ae69b4.js></script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/common/ui/jquery/jquery_ba31c430.js': ['/static/common/ui/jquery/jquery.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/common/pkg/framework_8a71980e.js': ['/static/common/lib/tangram/base/base.js', '/static/common/ui/search/search.js', '/static/common/ui/nslog/nslog.js', '/static/common/lib/fis/event/event.js', '/static/common/ui/enctip/enctip.js', '/static/common/ui/util/util.js', '/static/common/ui/eventForLemma/eventForLemma.js', '/static/common/lib/tangram/ui/Dialog/Dialog.js', '/static/common/ui/dialog/dialog.js', '/static/common/ui/fillusername/fillusername.js', '/static/common/ui/bubble/bubble.js', '/static/common/ui/userlogin/userlogin.js', '/static/common/ui/delegate/delegate.js', '/static/common/ui/fx/fx.js', '/static/common/ui/message/message.js', '/static/common/lib/magic/setup/suggestion/suggestion.js', '/static/widget/common/footer/footer.js', '/static/widget/common/footer_pad/footer_pad.js', '/static/widget/common/nav/nav.js', '/static/widget/common/nav_pad/nav_pad.js', '/static/widget/common/picture_dialog/picture_dialog.js', '/static/widget/common/search/search.js', '/static/common/lib/tangram/fx/fx.js', '/static/common/lib/tangram/fx/Timeline/Timeline.js', '/static/common/lib/tangram/fx/create/create.js', '/static/common/lib/tangram/fx/move/move.js', '/static/common/lib/tangram/fx/moveBy/moveBy.js', '/static/common/lib/fis/template/template.js', '/static/common/lib/magic/magic.js', '/static/common/lib/magic/Base/Base.js', '/static/common/lib/magic/control/control.js', '/static/common/lib/magic/control/Layer/Layer.js', '/static/common/lib/magic/control/Dialog/Dialog.js', '/static/common/lib/magic/Background/Background.js', '/static/common/lib/magic/Dialog/Dialog.js', '/static/common/lib/tangram/uiBase/uiBase.js', '/static/common/lib/tangram/ui/Base/Base.js', '/static/common/lib/tangram/ui/Dialog/Dialog$autoDispose/Dialog$autoDispose.js', '/static/common/lib/tangram/ui/behavior/behavior.js', '/static/common/lib/tangram/ui/behavior/statable/statable.js', '/static/common/lib/tangram/ui/Button/Button.js', '/static/common/lib/tangram/i18n/i18n.js', '/static/common/lib/tangram/i18n/string/string.js', '/static/common/lib/tangram/i18n/cultures/cultures.js', '/static/common/lib/tangram/i18n/cultures/zh-CN/zh-CN.js', '/static/common/lib/tangram/ui/Dialog/Dialog$button/Dialog$button.js', '/static/common/lib/tangram/ui/Dialog/Dialog$closeButton/Dialog$closeButton.js', '/static/common/lib/tangram/ui/behavior/coverable/coverable.js', '/static/common/lib/tangram/ui/Dialog/Dialog$coverable/Dialog$coverable.js', '/static/common/lib/tangram/ui/behavior/draggable/draggable.js', '/static/common/lib/tangram/ui/Dialog/Dialog$draggable/Dialog$draggable.js', '/static/common/lib/tangram/ui/Dialog/Dialog$iframe/Dialog$iframe.js', '/static/common/lib/tangram/ui/Dialog/Dialog$keyboard/Dialog$keyboard.js', '/static/common/lib/tangram/ui/Modal/Modal.js', '/static/common/lib/tangram/ui/Modal/Modal$coverable/Modal$coverable.js', '/static/common/lib/tangram/ui/Dialog/Dialog$modal/Dialog$modal.js', '/static/common/lib/tangram/ui/behavior/resizable/resizable.js', '/static/common/lib/tangram/ui/Dialog/Dialog$resizable/Dialog$resizable.js', '/static/common/lib/magic/setup/setup.js', '/static/common/lib/magic/control/Popup/Popup.js', '/static/common/lib/magic/Popup/Popup.js', '/static/common/lib/magic/control/Suggestion/Suggestion.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/common/ui/rangy/rangy_d94d5f81.js': ['/static/common/ui/rangy/rangy.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/common/ui/redEnv/redEnv_42a1ca75.js': ['/static/common/ui/redEnv/redEnv.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/common/ui/wikiUserLogin/wikiUserLogin_73800e8a.js': ['/static/common/ui/wikiUserLogin/wikiUserLogin.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/common/ui/userMsg/userMsg_a724096c.js': ['/static/common/ui/userMsg/userMsg.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/common/ui/jsmart/jsmart_92ef846f.js': ['/static/common/ui/jsmart/jsmart.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/common/ui/browser/browser_644ef66c.js': ['/static/common/ui/browser/browser.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/common/ui/safeCall/safeCall_8a8b5ca0.js': ['/static/common/ui/safeCall/safeCall.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/common/ui/userbar/userbar_a280cc31.js': ['/static/common/ui/userbar/userbar.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/common/ui/jquery_cookie/jquery_cookie_e1872d3b.js': ['/static/common/ui/jquery_cookie/jquery_cookie.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/common/ui/picture_user/picture_user_ff78eeb3.js': ['/static/common/ui/picture_user/picture_user.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/widget/lemma/history/notation/notation_4acf56d9.js': ['/static/widget/lemma/history/notation/notation.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/pkg/basenewviewjs_7e0b89af.js': ['/static/lemma/ui/view/maad3/maad3.js', '/static/lemma/ui/view/catalog3/catalog3.js', '/static/lemma/ui/view/lemmapic/lemmapic.js', '/static/lemma/ui/view/edit/edit.js', '/static/lemma/ui/view/sublemma3/sublemma3.js', '/static/lemma/ui/view/BKDynamic/BKDynamic.js', '/static/lemma/ui/view/lemmaPV/lemmaPV.js', '/static/lemma/ui/view/sidecatalog/sidecatalog.js', '/static/lemma/ui/view/lazyLoad/lazyLoad.js', '/static/lemma/ui/view/usercard/usercard.js', '/static/lemma/ui/view/reference3/reference3.js', '/static/lemma/ui/view/reftip/reftip.js', '/static/lemma/ui/view/addMeanItem/addMeanItem.js', '/static/lemma/ui/view/nslog/nslog.js', '/static/lemma/ui/view/horizonScroll/horizonScroll.js', '/static/lemma/ui/view/exManagerTip/exManagerTip.js', '/static/lemma/ui/view/fx/fx.js', '/static/lemma/ui/view/returnToTop/returnToTop.js', '/static/lemma/ui/view/vote3/vote3.js', '/static/lemma/ui/view/contributors3/contributors3.js', '/static/lemma/ui/view/updown/updown.js', '/static/lemma/ui/view/userRight3/userRight3.js', '/static/lemma/ui/view/topToolbar/topToolbar.js', '/static/lemma/ui/view/controller3/controller3.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/pkg/bottomviewjs_4b6f9fa0.js': ['/static/lemma/ui/view/vote/vote.js', '/static/lemma/ui/view/albumcollection/albumcollection.js', '/static/lemma/ui/view/share/share.js', '/static/lemma/ui/view/coeditor/coeditor.js', '/static/lemma/ui/view/relation/relation.js', '/static/widget/lemma/focusAndRelation/focusAndRelation.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/ui/view/catalog/catalog_3ff205bf.js': ['/static/lemma/ui/view/catalog/catalog.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/ui/view/sublemma/sublemma_efd14502.js': ['/static/lemma/ui/view/sublemma/sublemma.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/ui/view/ipad/ipad_02bedfd1.js': ['/static/lemma/ui/view/ipad/ipad.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/ui/view/albumcollection3/albumcollection3_4a681a74.js': ['/static/lemma/ui/view/albumcollection3/albumcollection3.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/pkg/modulejs_c6cb185a.js': ['/static/lemma/ui/view/shipin/shipin.js', '/static/lemma/ui/view/page_commonModule/page_commonModule.js', '/static/lemma/ui/view/music/music.js', '/static/lemma/ui/view/series/series.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/ui/view/index/index_ddde7d9e.js': ['/static/lemma/ui/view/index/index.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/ui/view/pic/pic_ba3ab51e.js': ['/static/lemma/ui/view/pic/pic.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/ui/view/jiaoyu/jiaoyu_816f951a.js': ['/static/lemma/ui/view/jiaoyu/jiaoyu.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/ui/view/authModule/authModule_6c0ca137.js': ['/static/lemma/ui/view/authModule/authModule.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/ui/view/reference/reference_03a41edb.js': ['/static/lemma/ui/view/reference/reference.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/ui/view/vertical/vertical_4e1b8216.js': ['/static/lemma/ui/view/vertical/vertical.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/ui/view/preview_albumcollection/preview_albumcollection_238696fc.js': ['/static/lemma/ui/view/preview_albumcollection/preview_albumcollection.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/ui/view/describeTips/describeTips_434ed2a8.js': ['/static/lemma/ui/view/describeTips/describeTips.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/ui/view/tablesort/tablesort_253273c3.js': ['/static/lemma/ui/view/tablesort/tablesort.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/ui/preview/controller/controller_0ac841ae.js': ['/static/lemma/ui/preview/controller/controller.js']});</script> <script type=text/javascript>F._fileMap({'http://baike.bdimg.com/static/lemma/history/history_31d6cfe0.js': ['/static/lemma/history/history.js']});</script> <script>PDC.mark("ht");</script> <style id=style-1-cropbar-clipper>/* Copyright 2014 Evernote Corporation. All rights reserved. */
+    .en-markup-crop-options {
+        top: 18px !important;
+        left: 50% !important;
+        margin-left: -100px !important;
+        width: 200px !important;
+        border: 2px rgba(255, 255, 255, .38) solid !important;
+        border-radius: 4px !important;
+    }
+
+    #page {
+        background-color: #fff !important;
+    }
+
+    .en-markup-crop-options div div:first-of-type {
+        margin-left: 0px !important;
+    }</style> <script type=text/javascript src=./11_files/bk.usercard.js></script> <script type=text/javascript src=./11_files/h.js defer></script> <script type=text/javascript src=./11_files/bkuc.js></script> <link rel=stylesheet type=text/css href=./11_files/bk.usercard.css> <script type=text/javascript src=./11_files/bk.usercard(1).js></script> <script type=text/javascript src=./11_files/h(1).js defer></script> <link rel=stylesheet type=text/css href=./11_files/bk.usercard(2).css>  <body style="background: #fff" id=view class="u-body small-screen"> <div id=wrap class=u-wrap> <script type=text/javascript>var judgeInfo_data = {
+        "sublemmaIds": [86065961],
+        "judgeInfo_multi": {"86065961": null},
+        "sysDoubt_multi": {"86065961": null}
+    };
+    var sublemmaIds = judgeInfo_data.sublemmaIds, judgeInfo_multi = judgeInfo_data.judgeInfo_multi;</script> <script>window.baikeInfo = !!window.baikeInfo ? window.baikeInfo : {};
+    window.baikeViewInfo = !!window.baikeViewInfo ? window.baikeViewInfo : {};
+    baikeInfo.expFlag = false;
+    baikeViewInfo = {
+        versionPriod: "new",
+        id: "16118404",
+        versionId: "86667466",
+        subLemmaId: "86065961",
+        subVersionId: "86065961",
+        editable: false,
+        title: "火柴手写码",
+        expIndex: "0",
+        subLen: "0",
+        isMulit: 1,
+        subList: null,
+        cataList: [],
+        pageType: "",
+        isPolyseme: false
+    };</script> <div id=page class=u-page> <style>#page {
+            padding-top: 0
+        }
+
+        .crumb {
+            width: 100%;
+            margin: 0 auto;
+            padding-top: 15px;
+            padding-bottom: 20px;
+            display:none;
+        }
+
+        .crumb .crumb_container {
+            margin: 0 auto;
+            width: 1137px;
+            color: #666
+        }
+
+        .crumb a.crumb_item {
+            color: #136ec2;
+            text-decoration: none
+        }
+
+        .small-screen .crumb .crumb_container {
+            width: 1021px
+        }</style> <div class=crumb></div> <div id=content-wrap class="layout grid-m0s245"> <div id=content class="col-main article"> <div id=main-wrap class="main-wrap u-main-wrap"> <div class="content-bd main-body"> <div class=text id=sec-content0> <h1 class=title> <div class=lemmaTitleH1>火柴手写码<a href=http://www.baidu.com/search/baike_help.html#创建版本 target=_blank><img src=./11_files/creationVersion_big.png title=本版本已经被选为创建版本，感谢muzixinyu对词条改进做出的创建贡献 border=0 align=absmiddle></a> </div> </h1> <div class=mod-top id=card-container> <div class="card-summary nslog-area clearfix" data-nslog-type=72> <div class=card-summary-content> <div class=para> 火柴手写码，是基于海量手写字符、复杂安全技术而生成的图片验证码，由火柴棍工作室研发，为开发者提供清晰、安全、方便的云验证码解决方案。 </div> </div> </div> </div> <div class=baseInfoWrap id=baseInfoWrapDom> <div class=baseInfoLeft> <div class=biItem> <div class=biItemInner><span class=biTitle>网站名称</span> <div class=biContent>火柴手写码</div> </div> </div> </div> <div class=baseInfoRight> <div class=biItem> <div class=biItemInner><span class=biTitle>创始人</span> <div class=biContent>火柴棍工作室</div> </div> </div> </div> </div> <script type=text/javascript>F.use(["/static/common/lib/tangram/base/base.js", "/static/common/ui/fx/fx.js"], function (baidu, Fx) {
+                                baidu(".biOpen").click(function (e) {
+                                    var biOpenItem = baidu(this.parentNode.parentNode).siblings(".biOpenItem");
+                                    var biOpenItemCon = biOpenItem.find(".biOpenItemCon");
+                                    var conHeight = biOpenItemCon.height();
+                                    var openHeight = parseInt(biOpenItemCon.attr("openHeight"));
+                                    biOpenItem.css("display", "block");
+                                    var fx = new FX(biOpenItemCon[0], {
+                                        "height": {
+                                            from: conHeight,
+                                            to: openHeight
+                                        }
+                                    }, 0.2, 'easeOut');
+                                    fx.start();
+                                });
+                                baidu(".biClose").click(function (e) {
+                                    var biOpenItemCon = baidu(this).siblings(".biOpenItemCon");
+                                    var conHeight = biOpenItemCon.height();
+                                    var closeHeight = parseInt(biOpenItemCon.attr("closeHeight"));
+                                    var that = this;
+                                    var fx = new FX(biOpenItemCon[0], {
+                                        "height": {
+                                            from: conHeight,
+                                            to: closeHeight
+                                        }
+                                    }, 0.2, 'easeOut', function () {
+                                        that.parentNode.style.display = "none";
+                                    });
+                                    fx.start();
+                                });
+                            });</script> <div class="z-catalog nslog-area log-set-param" log-set-param=catalogshow data-nslog-type=1016 id=catalog-0 data-subindex=0 style=width:310px;background-image:url(/static/lemma/view3/img/cate_top_15.png)><h2> <span>目录</span></h2> <dl id=catalog-holder-0 class="holder hideholder"> <dd class="catalog-item 0"><p class=z-catalog-i1><span class=catalog-item-index1>1</span><a href="http://baike.baidu.com/history/id=86667466#1" class=nslog:1274 catalog=true name=STAT_ONCLICK_UNSUBMIT_CATALOG onclick="return false">简介</a> </p> <dd class="catalog-item 28"><p class=z-catalog-i1><span class=catalog-item-index1>2</span><a href="http://baike.baidu.com/history/id=86667466#2" class=nslog:1274 catalog=true name=STAT_ONCLICK_UNSUBMIT_CATALOG onclick="return false">核心产品技术优势</a> </p> <dd class="hold-catalog-li er 77"><span>▪</span> <a href="http://baike.baidu.com/history/id=86667466#2_1" catalog=true onclick="return false">海量手写码</a> <dd class="hold-catalog-li er 98"><span>▪</span> <a href="http://baike.baidu.com/history/id=86667466#2_2" catalog=true onclick="return false">手写码OCR识别难度高</a> <dd class="hold-catalog-li er 119"><span>▪</span> <a href="http://baike.baidu.com/history/id=86667466#2_3" catalog=true onclick="return false">复杂再加工</a> <dd class="hold-catalog-li er 140"><span>▪</span> <a href="http://baike.baidu.com/history/id=86667466#2_4" catalog=true onclick="return false">快速集成</a> <dd class="catalog-item 161" style=margin-top:6px><p class=z-catalog-i1><span class=catalog-item-index1>3</span><a href="http://baike.baidu.com/history/id=86667466#3" class=nslog:1274 catalog=true name=STAT_ONCLICK_UNSUBMIT_CATALOG onclick="return false">主要功能</a> </p> <dd class="hold-catalog-li er 189"><span>▪</span> <a href="http://baike.baidu.com/history/id=86667466#3_1" catalog=true onclick="return false">浮窗式风格验证码</a> <dd class="hold-catalog-li er 210"><span>▪</span> <a href="http://baike.baidu.com/history/id=86667466#3_2" catalog=true onclick="return false">弹窗式风格验证码</a> <dd class="catalog-item 231" style=margin-top:6px><p class=z-catalog-i1><span class=catalog-item-index1>4</span><a href="http://baike.baidu.com/history/id=86667466#4" class=nslog:1274 catalog=true name=STAT_ONCLICK_UNSUBMIT_CATALOG onclick="return false">开发团队</a> </p> </dl> <div id=lemma-catalog-bottombg style=background-image:url(/static/lemma/view3/img/cate_bottom_18.png)></div> </div> <div class=clear></div> <div id=lemmaContent-0 class=lemma-main-content> <div class=anchor-list><a name=1 class=anchor-1></a><a name=sub86065961_1 class=anchor-1></a><a name=简介 class=anchor-1></a></div> <h2 class=headline-1><span class=headline-1-index>1</span><span class=headline-content>简介</span></h2> <div class=para>传统图片验证码一般是由程序自动扭曲字符生成，因为图片内容比较单一、混淆算法有限，容易被穷举破解，而且用户体验较差。</div> <div class=para> 而火柴手写码，是将海量手写图片资源进行碎片化处理，随机组合、加密而成；由于源数据重复概率低、手写文字差异大（即使同一个人多次书写同一数字，其结果也不尽相同）、手写字符书写不规则等特点，使得现有OCR技术很难识别；同时我们结合大数据处理和云计算技术，为开发者提供清晰、安全、方便的云验证码服务。 </div> <div class=anchor-list><a name=2 class=anchor-1></a><a name=sub86065961_2 class=anchor-1></a><a name=核心产品技术优势 class=anchor-1></a></div> <h2 class=headline-1><span class=headline-1-index>2</span><span class=headline-content>核心产品技术优势</span></h2> <h3 class=headline-2><a name=2_1 class=anchor-2></a><a name=sub86065961_2_1 class=anchor-2></a><a name=核心产品技术优势_海量手写码 class=anchor-2></a><span class=headline-content>海量手写码</span></h3> <div class=para> 我们长期致力于国人书写习惯的识别和研究，目前已收集了近亿个手写码，建立了庞大的个性数据库。我们正在并将持续扩容手写字符数据库，从目前的纯数字逐渐形成数字、英文字母、简体中文汉字、其他特殊字符等多种手写码混排的格局。 </div> <div class=para> 我们也将努力尝试每个手写码有且只用一次，以此提供破解复杂度；尝试降低噪点，使图片更清晰以便于用户更容易识别；尝试结合大数据行为分析，在不降低安全性的前提下为不同的用户推荐不同的手写码，如：为喜欢数字的用户提供数字验证码，为喜欢汉字的用户提供汉字验证码。 </div> <h3 class=headline-2><a name=2_2 class=anchor-2></a><a name=sub86065961_2_2 class=anchor-2></a><a name=核心产品技术优势_手写码OCR识别难度高 class=anchor-2></a><span class=headline-content>手写码OCR识别难度高</span> </h3> <div class=para> 即使是同一个人，在不同时间、不同场景下书写同一个字符，由于书写时的方式、笔、纸张、环境等因素的不同，都可能导致书写结果的不一致，这在很大程度上增加了OCR识别的复杂度。 </div> <div class=para>下图是同一人书写的24个数字“8”，都不尽相同。</div> <div class=para style="text-align: center"> <div class="lemma-picture text-pic layout-center" style="width:220px; float: none; display: block; margin: 0px auto; clear: both"> <a class="image-link nslog:9317" target=_blank title=24个8 style=width:220px;height:125px><img class=lazy-img src=11_files/1.jpg alt=24个8 style=width:220px;height:125px></a><span class=description>24个8<sup>[1]</sup><a name=ref_[1]_86065961></a></span> </div> </div> <h3 class=headline-2><a name=2_3 class=anchor-2></a><a name=sub86065961_2_3 class=anchor-2></a><a name=核心产品技术优势_复杂再加工 class=anchor-2></a><span class=headline-content>复杂再加工</span></h3> <div class=para>我们对碎片化的手写单个字符进行随机组合、降噪等复杂技术处理后，形成6~8个字符组成的图片验证码，以提供清晰、安全、方便的云验证服务。 </div> <h3 class=headline-2><a name=2_4 class=anchor-2></a><a name=sub86065961_2_4 class=anchor-2></a><a name=核心产品技术优势_快速集成 class=anchor-2></a><span class=headline-content>快速集成</span></h3> <div class=para> 只需要3分钟、4个步骤，开发者就可以将手写码轻松部署到网站或其他产品上。我们还在不断完善开放平台，提供更多Demo、SDK，帮助开发者更快集成。 </div> <div class=anchor-list><a name=3 class=anchor-1></a><a name=sub86065961_3 class=anchor-1></a><a name=主要功能 class=anchor-1></a></div> <h2 class=headline-1><span class=headline-1-index>3</span><span class=headline-content>主要功能</span></h2> <div class=para>火柴手写码开放平台以数据流形式传输验证码图片，前端展示方式由开发者按需自定义，目前我们提供了下述两种Demo。</div> <h3 class=headline-2><a name=3_1 class=anchor-2></a><a name=sub86065961_3_1 class=anchor-2></a><a name=主要功能_浮窗式风格验证码 class=anchor-2></a><span class=headline-content>浮窗式风格验证码</span> </h3> <div class=para style="text-align: center"> <div class="lemma-picture text-pic layout-center" style="width:220px; float: none; display: block; margin: 0px auto; clear: both"> <a class="image-link nslog:9317" target=_blank title=浮窗式风格验证码 style=width:220px;height:158px><img src=11_files/2.jpg alt=浮窗式风格验证码 style=width:220px;height:158px></a><span class=description>浮窗式风格验证码</span></div> </div> <h3 class=headline-2><a name=3_2 class=anchor-2></a><a name=sub86065961_3_2 class=anchor-2></a><a name=主要功能_弹窗式风格验证码 class=anchor-2></a><span class=headline-content>弹窗式风格验证码</span> </h3> <div class=para style="text-align: center"> <div class="lemma-picture text-pic layout-center" style="width:220px; float: none; display: block; margin: 0px auto; clear: both"> <a class="image-link nslog:9317" target=_blank title=弹窗式风格验证码 style=width:220px;height:175px><img src=11_files/3.jpg alt=弹窗式风格验证码 style=width:220px;height:175px></a><span class=description>弹窗式风格验证码</span></div> </div> <div class=anchor-list><a name=4 class=anchor-1></a><a name=sub86065961_4 class=anchor-1></a><a name=开发团队 class=anchor-1></a></div> <h2 class=headline-1><span class=headline-1-index>4</span><span class=headline-content>开发团队</span></h2> <div class=para> 火柴棍工作室，由一群开发经验丰富的80/90码农组成，在饱受验证码开发之苦后，致力于国人书写习惯的识别和研究，结合手写体特征与验证码技术形成了手写码。我们在解放自己的同时，也希望能把更多的开发者从无聊的验证码开发中解放出来，所以搭建了火柴手写码开放平台。 </div> </div> <div class="reinforce lazyload" lazy-path=/static/lemma/ui/view/reference/urlRmoveParentRefer.js lazy-init=done> <dl id=viewRefer class="viewRefer nslog-area log-set-param" data-nslog-type=2 log-set-param=ext_reference> <dt><span class=z-ref-toggle onclick=refToggle(this.parentNode.parentNode) style="visibility: hidden"></span>参考资料  <dd class=reference> <ul> <li class=layout id=reference-[1]-86065961-wrap><p class=refUrl><span class=ref-index>1．</span><a class=ref-top id=refIndex_1_86065961 title=向上跳转 href=javascript:void(0)> &nbsp;&nbsp;</a><a rel=nofollow href="http://vcode.360sht.com/" target=_blank class=nslog:1968>关于我们_火柴手写码<span class=linkout>&nbsp;</span></a> <span>．火柴手写码</span> <span>[引用日期2015-03-19]</span> ．</p></li> </ul>  </dl> <script type=text/javascript>function refToggle(node) {
+                                    var node = document.getElementById("viewRefer");
+                                    var ulist = node.getElementsByTagName('li');
+                                    if (baidu.dom.hasClass(node, 'collapse')) {
+                                        baidu.removeClass(node, 'collapse');
+                                        for (var i = 0; i < ulist.length; i++) {
+                                            ulist[i].style.display = "list-item";
+                                        }
+                                    } else {
+                                        ulist.length >= 10 ? baidu.addClass(node, 'collapse') : baidu.setStyle(baidu('.z-ref-toggle')[0], 'visibility', 'hidden');
+                                        for (var i = 0; i < ulist.length; i++) {
+                                            if (i >= 10) {
+                                                ulist[i].style.display = "none";
+                                            }
+                                        }
+                                    }
+                                }</script> </div> </div> </div> </div> </div> <div id=side class=col-sub> <div class="lemma-picture summary-pic" style=width:268px><a class="image-link nslog:1198" href="http://baike.baidu.com/historypic/c/89306944/0/4afbfbedab64034f33b35142abc379310a551d73.html?fr=lemma&ct=single" target=_blank title=火柴手写码 style=width:268px;height:268px><img src=./11_files/4afbfbedab64034f33b35142abc379310a551d73.jpg alt=火柴手写码 style=width:268px;height:268px></a><a class="description nslog:10000202" title=火柴手写码图册 href="http://baike.baidu.com/historypic/c/89306944/0/4afbfbedab64034f33b35142abc379310a551d73.html?fr=lemma" target=_blank><span class=icon></span>火柴手写码图册</a> </div> <div id=side-catalog-showtag></div> <script>var baikeViewInfo = window.baikeViewInfo ? window.baikeViewInfo : {};
+                baikeViewInfo.expIndex = 0;
+                baikeViewInfo.cataList = baikeViewInfo.cataList ? baikeViewInfo.cataList : [];
+                baikeViewInfo.cataList = baikeViewInfo.cataList.concat([{
+                    "title": "\u7b80\u4ecb",
+                    "charnum": 309,
+                    "screennum": 0,
+                    "level": 1,
+                    "index": 1,
+                    "modules": [],
+                    "display": true,
+                    "ele": "1"
+                }, {
+                    "title": "\u6838\u5fc3\u4ea7\u54c1\u6280\u672f\u4f18\u52bf",
+                    "charnum": 757,
+                    "screennum": 0,
+                    "level": 1,
+                    "index": 2,
+                    "modules": [],
+                    "display": true,
+                    "ele": "2"
+                }, {
+                    "title": "\u6d77\u91cf\u624b\u5199\u7801",
+                    "charnum": 353,
+                    "screennum": 0,
+                    "level": 2,
+                    "index": "2_1",
+                    "modules": [],
+                    "display": true,
+                    "ele": "2_1"
+                }, {
+                    "title": "\u624b\u5199\u7801OCR\u8bc6\u522b\u96be\u5ea6\u9ad8",
+                    "charnum": 164,
+                    "screennum": 0,
+                    "level": 2,
+                    "index": "2_2",
+                    "modules": [],
+                    "display": true,
+                    "ele": "2_2"
+                }, {
+                    "title": "\u590d\u6742\u518d\u52a0\u5de5",
+                    "charnum": 100,
+                    "screennum": 0,
+                    "level": 2,
+                    "index": "2_3",
+                    "modules": [],
+                    "display": true,
+                    "ele": "2_3"
+                }, {
+                    "title": "\u5feb\u901f\u96c6\u6210",
+                    "charnum": 105,
+                    "screennum": 0,
+                    "level": 2,
+                    "index": "2_4",
+                    "modules": [],
+                    "display": true,
+                    "ele": "2_4"
+                }, {
+                    "title": "\u4e3b\u8981\u529f\u80fd",
+                    "charnum": 106,
+                    "screennum": 0,
+                    "level": 1,
+                    "index": 3,
+                    "modules": [],
+                    "display": true,
+                    "ele": "3"
+                }, {
+                    "title": "\u6d6e\u7a97\u5f0f\u98ce\u683c\u9a8c\u8bc1\u7801",
+                    "charnum": 0,
+                    "screennum": 0,
+                    "level": 2,
+                    "index": "3_1",
+                    "modules": [],
+                    "display": true,
+                    "ele": "3_1"
+                }, {
+                    "title": "\u5f39\u7a97\u5f0f\u98ce\u683c\u9a8c\u8bc1\u7801",
+                    "charnum": 0,
+                    "screennum": 0,
+                    "level": 2,
+                    "index": "3_2",
+                    "modules": [],
+                    "display": true,
+                    "ele": "3_2"
+                }, {
+                    "title": "\u5f00\u53d1\u56e2\u961f",
+                    "charnum": 193,
+                    "screennum": 0,
+                    "level": 1,
+                    "index": 4,
+                    "modules": [],
+                    "display": true,
+                    "ele": "4"
+                }]);</script> </div> </div> </div> </div> <script>window.refTipData = window['refTipData'] || [];
+rfdataList = [{
+    "type": "1",
+    "title": "\u5173\u4e8e\u6211\u4eec_\u706b\u67f4\u624b\u5199\u7801",
+    "url": "http:\/\/vcode.360sht.com\/",
+    "site": "\u706b\u67f4\u624b\u5199\u7801",
+    "publishDate": "",
+    "refDate": "2015-03-19",
+    "index": 1
+}];
+refTipData.push([86065961, rfdataList]);</script> <div id=refTip class=refTip-box> <table> <tbody> <tr> <td valign=middle class=refTip-bg> <div class=refTip-content id=refTip-content></div>  <td class=refTip-text valign=middle>参考资料   </table> <div class=refTip-triangle></div> </div> <div id=sideToolbar style="display: none; position: fixed; top: 508px; left: 1190px"> <div id=sideCatalog class=sideCatalogBg style="visibility: hidden"> <div id=sideCatalog-sidebar> <div class=sideCatalog-sidebar-top></div> <div class=sideCatalog-sidebar-bottom></div> </div> <div id=sideCatalog-updown style="visibility: hidden"> <div id=sideCatalog-up class=sideCatalog-up-disable title=向上翻页></div> <div id=sideCatalog-down class=sideCatalog-down-enable title=向下翻页></div> </div> <div id=sideCatalog-catalog> <dl style=width:175px;zoom:1> <dd class=sideCatalog-item1 id=sideToolbar-item-0-1><span class=sideCatalog-index1>1</span><a href="http://baike.baidu.com/history/id=86667466#1" class=nslog:1026 title=简介 onclick="return false">简介</a><span class=sideCatalog-dot></span> <dd class=sideCatalog-item1 id=sideToolbar-item-0-2><span class=sideCatalog-index1>2</span><a href="http://baike.baidu.com/history/id=86667466#2" class=nslog:1026 title=核心产品技术优势 onclick="return false">核心产品技术优势</a><span class=sideCatalog-dot></span> <dd class=sideCatalog-item2 id=sideToolbar-item-0-2_1><span class=sideCatalog-index2>2.1</span><a href="http://baike.baidu.com/history/id=86667466#2_1" class=nslog:1026 title=海量手写码 onclick="return false">海量手写码</a><span class=sideCatalog-dot></span> <dd class=sideCatalog-item2 id=sideToolbar-item-0-2_2><span class=sideCatalog-index2>2.2</span><a href="http://baike.baidu.com/history/id=86667466#2_2" class=nslog:1026 title=手写码OCR识别难度高 onclick="return false">手写码OCR识别难度高</a><span class=sideCatalog-dot></span> <dd class=sideCatalog-item2 id=sideToolbar-item-0-2_3><span class=sideCatalog-index2>2.3</span><a href="http://baike.baidu.com/history/id=86667466#2_3" class=nslog:1026 title=复杂再加工 onclick="return false">复杂再加工</a><span class=sideCatalog-dot></span> <dd class=sideCatalog-item2 id=sideToolbar-item-0-2_4><span class=sideCatalog-index2>2.4</span><a href="http://baike.baidu.com/history/id=86667466#2_4" class=nslog:1026 title=快速集成 onclick="return false">快速集成</a><span class=sideCatalog-dot></span> <dd class=sideCatalog-item1 id=sideToolbar-item-0-3><span class=sideCatalog-index1>3</span><a href="http://baike.baidu.com/history/id=86667466#3" class=nslog:1026 title=主要功能 onclick="return false">主要功能</a><span class=sideCatalog-dot></span> <dd class=sideCatalog-item2 id=sideToolbar-item-0-3_1><span class=sideCatalog-index2>3.1</span><a href="http://baike.baidu.com/history/id=86667466#3_1" class=nslog:1026 title=浮窗式风格验证码 onclick="return false">浮窗式风格验证码</a><span class=sideCatalog-dot></span> <dd class=sideCatalog-item2 id=sideToolbar-item-0-3_2><span class=sideCatalog-index2>3.2</span><a href="http://baike.baidu.com/history/id=86667466#3_2" class=nslog:1026 title=弹窗式风格验证码 onclick="return false">弹窗式风格验证码</a><span class=sideCatalog-dot></span> <dd class=sideCatalog-item1 id=sideToolbar-item-0-4><span class=sideCatalog-index1>4</span><a href="http://baike.baidu.com/history/id=86667466#4" class=nslog:1026 title=开发团队 onclick="return false">开发团队</a><span class=sideCatalog-dot></span> </dl> </div> </div> <a id=sideCatalogBtn href=javascript:void(0); style="visibility: hidden"></a><a id=sideToolbar-up href=javascript:void(0) style="visibility: hidden"></a> </div> <script>F.use("/static/widget/lemma/history/notation/notation.js", function (Notation) {
+    var notation = new Notation({
+        commitId: "89306944",
+        lemmaId: "16118404",
+        subLemmaId: "86065961",
+        versionId: "86667466",
+        subVersionId: "86065961",
+        authorId: "14530638",
+        isUserAudit: false
+    });
+    notation.initialize();
+});</script> <script>F.use("/static/common/lib/tangram/base/base.js", function (baidu) {
+    baidu.each = baidu.forEach;
+    baidu.array.each = baidu.forEach;
+    window.baidu = baidu;
+});</script> <script type=text/javascript>F.use(["/static/lemma/ui/preview/controller/controller.js", "/static/common/ui/util/util.js", "/static/common/lib/tangram/ui/Base/Base.js", "/static/common/ui/dialog/dialog.js"], function (controller, util, uiBase, dialog) {
+    window.Dialog = dialog;
+    F.use("/static/common/ui/userlogin/userlogin.js", function (e) {
+        e.check();
+    });
+});
+window.nslog = function () {
+};</script> <script type=text/javascript>F.use('/static/lemma/history/history.js');</script> <script type=text/javascript>F.use("/static/common/ui/jquery/jquery.js", function ($) {
+    $.ajax({url: '/cms/global/cms_lemma_config.js?r=' + Math.random(), dataType: "jsonp"});
+});</script> <script>(function () {
+    PDC.extend({
+        _navTiming: window.performance && performance.timing, ready: (function (callback) {
+            var readyBound = false, readyList = [], DOMContentLoaded, isReady = false;
+            if (document.addEventListener) {
+                DOMContentLoaded = function () {
+                    document.removeEventListener("DOMContentLoaded", DOMContentLoaded, false);
+                    ready()
+                }
+            } else {
+                if (document.attachEvent) {
+                    DOMContentLoaded = function () {
+                        if (document.readyState === "complete") {
+                            document.detachEvent("onreadystatechange", DOMContentLoaded);
+                            ready()
+                        }
+                    }
+                }
+            }
+            function ready() {
+                if (!isReady) {
+                    isReady = true;
+                    for (var i = 0, j = readyList.length; i < j; i++) {
+                        readyList[i]()
+                    }
+                }
+            }
+
+            function doScrollCheck() {
+                try {
+                    document.documentElement.doScroll("left")
+                } catch (e) {
+                    setTimeout(doScrollCheck, 1);
+                    return
+                }
+                ready()
+            }
+
+            function bindReady() {
+                if (readyBound) {
+                    return
+                }
+                readyBound = true;
+                if (document.addEventListener) {
+                    document.addEventListener("DOMContentLoaded", DOMContentLoaded, false);
+                    window.addEventListener("load", ready, false)
+                } else {
+                    if (document.attachEvent) {
+                        document.attachEvent("onreadystatechange", DOMContentLoaded);
+                        window.attachEvent("onload", ready);
+                        var toplevel = false;
+                        try {
+                            toplevel = window.frameElement == null
+                        } catch (e) {
+                        }
+                        if (document.documentElement.doScroll && toplevel) {
+                            doScrollCheck()
+                        }
+                    }
+                }
+            }
+
+            bindReady();
+            return function (callback) {
+                isReady ? callback() : readyList.push(callback)
+            }
+        })(), Cookie: {
+            set: function (name, value, max_age) {
+                max_age = max_age || 10;
+                var exp = new Date();
+                exp.setTime(new Date().getTime() + max_age * 1000);
+                document.cookie = name + "=" + escape(value) + ";path=/;expires=" + exp.toGMTString()
+            }, get: function (name) {
+                var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+                if (arr != null) {
+                    return unescape(arr[2])
+                }
+                return null
+            }, remove: function (name) {
+                this.set(name, "", -1)
+            }
+        }, _is_sample: function (ratio) {
+            if (!PDC._random) {
+                PDC._random = Math.random()
+            }
+            return PDC._random <= ratio
+        }, _load_analyzer: function () {
+            var special_pages = this._opt.special_pages || [];
+            var radios = [this._opt.sample];
+            for (var i = 0; i < special_pages.length; i++) {
+                radios.push(special_pages[i]["sample"])
+            }
+            var radio = Math.max.apply(null, radios);
+            if (PDC._is_sample(radio) == false) {
+                return
+            }
+            PDC._analyzer.loaded = true;
+            PDC._load_js(PDC._analyzer.url, function () {
+                var callbacks = PDC._analyzer.callbacks;
+                for (var i = 0, l = callbacks.length; i < l; i++) {
+                    callbacks[i]()
+                }
+            })
+        }, _load_js: function (url, callback) {
+            var script = document.createElement("script");
+            script.setAttribute("type", "text/javascript");
+            script.setAttribute("src", url);
+            script.onload = script.onreadystatechange = function () {
+                if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+                    script.onload = script.onreadystatechange = null;
+                    if (typeof callback === "function") {
+                        callback(url, true)
+                    }
+                }
+            };
+            script.onerror = function (e) {
+                if (typeof callback === "function") {
+                    callback(url, false)
+                }
+            };
+            document.getElementsByTagName("head")[0].appendChild(script)
+        }, send: function () {
+            if (PDC._analyzer.loaded == true) {
+                WPO_PDA.send()
+            } else {
+                PDC._load_analyzer();
+                PDC._analyzer.callbacks.push(function () {
+                    WPO_PDA.send()
+                })
+            }
+        }
+    }, PDC);
+    !function () {
+        var Cookie = PDC.Cookie, jt = Cookie.get("PMS_JT"), isset = false;
+        if (jt) {
+            Cookie.remove("PMS_JT");
+            jt = eval(jt);
+            if (!jt.r || document.referrer.replace(/#.*/, "") == jt.r) {
+                (PDC._render_start - jt.s) > 100 && PDC.mark("wt", (PDC._render_start - jt.s))
+            }
+        }
+        function findParent(tagname, el) {
+            var flag = 0;
+            if ((el.nodeName || el.tagName).toLowerCase() === tagname.toLowerCase()) {
+                return el
+            }
+            while (el = el.parentNode) {
+                flag++;
+                if ((el.nodeName || el.tagName).toLowerCase() === tagname.toLowerCase()) {
+                    return el
+                }
+                if (flag >= 4) {
+                    return null
+                }
+            }
+            return null
+        }
+
+        function clickHandle(e) {
+            var e = e || window.event;
+            var target = e.target || e.srcElement;
+            var from = findParent("a", target);
+            if (from) {
+                var url = from.getAttribute("href");
+                if (!/^#|javascript:/.test(url)) {
+                    Cookie.set("PMS_JT", '({"s":' + (+new Date) + ',"r":"' + document.URL.replace(/#.*/, "") + '"})');
+                    isset = true
+                }
+            }
+        }
+
+        if (document.attachEvent) {
+            document.attachEvent("onclick", clickHandle)
+        } else {
+            document.addEventListener("click", clickHandle, false)
+        }
+    }();
+    PDC.ready(function () {
+        PDC.mark("drt")
+    });
+    if (document.attachEvent) {
+        window.attachEvent("onload", function () {
+            PDC.mark("lt")
+        }, false)
+    } else {
+        window.addEventListener("load", function () {
+            PDC.mark("let");
+            PDC._setFS && PDC._setFS();
+            PDC._opt.ready !== false && PDC._load_analyzer()
+        })
+    }
+})();</script> <!--TRACE：--> <div id=usercard-wrap class="usercard-wrap usercardwrap"> <div class="user-card fix" style="opacity: 0"> <div class=top-bg></div> <div class="card-body fix"> <div class=uc-l> <div class=uc-pic></div> <div class=uc-name><a class=uc-id href=""></a></div> <div class=uc-level></div> </div> <div class=uc-r> <div class=uc-items> <div class="uc-role fix"></div> <div class="uc-badge fix"></div> <div class=uc-honor></div> <div class="uc-going-task fix"></div> <div class=uc-gq></div> <div class=uc-default></div> <div class=uc-edit></div> </div> <span class=pillar></span></div> </div> </div> </div> <div id=cli_dialog></div> <div class="wgt_bubble wgt-bubble-userMenu" style="display: none"> <ul> <li class=top><a href=http://baike.baidu.com/uc/home target=_blank>我的百科</a></li> <li><a href=http://baike.baidu.com/uc/task target=_blank>我的任务</a></li> <li><a href=http://baike.baidu.com/uc/effort target=_blank>我的词条</a></li> <li><a href=http://passport.baidu.com/center target=_blank>账号设置</a></li> <li class="bottom logout"><a data-action=logout href=javascript:;>退出</a></li> </ul> <em class=tail>◆</em></div> <em class=notation-icon style=display:none></em> <div class=notation-bubble style=display:none></div> <div class="wgt_bubble wgt-bubble-userMsg" style="display: none"> <ul> <li class=top><a href=http://baike.baidu.com/messages target=_blank><span class=userMsgType>通知</span></a></li> <li class=bottom><a href="http://msg.baidu.com/" target=_blank><span class=userMsgType>私信</span></a></li> </ul> <em class=tail>◆</em></div> <div id=usercard-wrap class="usercard-wrap usercardwrap"> <div class="user-card fix" style="opacity: 0"> <div class=top-bg></div> <div class="card-body fix"> <div class=uc-l> <div class=uc-pic></div> <div class=uc-name><a class=uc-id href=""></a></div> <div class=uc-level></div> </div> <div class=uc-r> <div class=uc-items> <div class="uc-role fix"></div> <div class="uc-badge fix"></div> <div class=uc-honor></div> <div class="uc-going-task fix"></div> <div class=uc-gq></div> <div class=uc-default></div> <div class=uc-edit></div> </div> <span class=pillar></span></div> </div> </div> </div>  
